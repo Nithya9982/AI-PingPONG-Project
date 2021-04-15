@@ -35,9 +35,34 @@ function setup(){
   function modelLoaded(){
     console.log("MOdel Loaded!!");
   }
+  rightWristY = "";
+  rightWristY =  "";
+  leftWristX = "";
+  leftWristY = "";
+  scoreRightWrist = "";
+
+  function gotPoses(results){
+ if (results.length > 0){
+  rightWristX = results[0].pose.rightWrist.x;
+  rightWristY = results[0].pose.rightWrist.y;
+  leftWristX = results[0].pose.leftWrist.x;
+  leftWristY = results[0].pose.leftWrist.y;
+  scoreRightWrist = results[0].pose.keypoints[10].score;
+  console.log(results);
+
+
+ }
+  }
 
 
 function draw(){
+
+  if(scoreRightWrist > 0.2)
+  {
+    fill("#a24857");
+    stroke("#a24857");
+    circle(rightWristX, rightWristY, 30);
+  }
 
  background(0); 
 
@@ -48,6 +73,7 @@ function draw(){
  fill("black");
  stroke("black");
  rect(0,0,20,700);
+
  
    //funtion paddleInCanvas call 
    paddleInCanvas();
