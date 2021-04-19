@@ -37,23 +37,24 @@ function setup(){
   }
   rightWristY = "";
   rightWristY =  "";
-  leftWristX = "";
-  leftWristY = "";
+  game_statusn = "";
   scoreRightWrist = "";
 
   function gotPoses(results){
  if (results.length > 0){
   rightWristX = results[0].pose.rightWrist.x;
   rightWristY = results[0].pose.rightWrist.y;
-  leftWristX = results[0].pose.leftWrist.x;
-  leftWristY = results[0].pose.leftWrist.y;
+ 
   scoreRightWrist = results[0].pose.keypoints[10].score;
   console.log(results);
 
 
  }
   }
-
+  function startGame(){
+    game_status = "Start";
+    document.getElementById("status".innerHTML = "Game is Loading");
+  }
 
 function draw(){
 
@@ -63,8 +64,9 @@ function draw(){
     stroke("#a24857");
     circle(rightWristX, rightWristY, 30);
   }
-
- background(0); 
+if(game_status == "start"){
+  document.getElementById("status").innerHTML = "Game has LOaded";
+  background(0); 
 
  fill("black");
  stroke("black");
@@ -102,7 +104,13 @@ function draw(){
    
    //function move call which in very important
     move();
+
 }
+  
+
+ 
+}
+
 
 
 
